@@ -1,0 +1,120 @@
+#+OPTIONS: toc:2
+
+#+STARTUP: inlineimages
+
+
+#+ATTR_HTML: width="100px"
+#+ATTR_ORG: :width 300
+[[file:Assets/test.png]]
+
+* Information
+This launcher is designed to be a massive improvement over the "original" launcher. It offers you a multitude of features that are absent in the original launcher:
+
+** Store 10000 accounts, Play with Style
+This launcher stores all your accounts for you. On the left side of the launcher window, simply choose the account you wish to play, and click the Play button.
+
+The passwords are stored on your computer using *military-grade encryption*, with an optional *Master Password* for all accounts, preventing illegal access. If you wish to migrate your data to another computer, it's as simple as copying a folder. Instructions will be provided.
+
+** Windows, MacOS and Linux support
+This launcher has native MacOS and Linux ports that you can easily download and run natively in your host machine.
+
+BSGO runs through WINE. If you wish to install WINE, follow the instructions in this document. If you have any questions, please let us know.
+
+** Random account generator
+Tired of constantly creating new accounts with proper usernames and passwords? This launcher will do it for you!
+
+You can create a new random account with a few clicks.
+
+Note: In the future, email confirmation might become mandatory. We're afraid you might be required to use a real email address at some point in the future. However, The username/password randomizers are still expected to work.
+
+** 0% Ban risk, we guarantee
+We designed this launcher to emulate the original launcher's behavior. From the login server's perspective, this launcher behaves exactly as the "original" launcher. In fact, *we had to make our launcher slightly slower* in order to match the sluggish behavior of the original launcher.
+
+If you are detected, it's because you told someone you're using our launcher. While we appreciate your enthusiasm, your safety comes first. It's recommended that you not tell admins about it, they might get paranoid.
+** Manage your game files
+This launcher circumvents nearly all security checks in the original launcher. We bypassed virtualization checks as well as modified game file checks and more, ensuring your freedom to play BSGO the way you like.
+
+In addition, you may give the Launcher a Git repo link including your personal BSGO client configuration. The Launcher will update your current client configuration with 1 click.
+
+More info in this video tutorial: (coming soon)
+** No spyware, no bullshit
+The original Launcher regularly tracks your usage and sends statistics and diagnostics to the server, including a unique hardware ID that identifies your computer throughout multiple accounts and networks. We removed all this nonsense from the original Launcher, ensuring your privacy.
+
+The only thing they may know about you, is your IP address. For full anonymity, we recomend using a VPN service, such as ProtonVPN (free), which will prevent the server from identifying your computer.
+
+
+* Configuration
+** Windows (x86 or x86_64)
+If you're using Windows and you have problems running BSGO, go ask your grandma. I bet she knows more about computers than you do.
+** MacOS (x86_64)
+We have not tested our launcher on ARM MacOS. It's recommended that you use an Intel Mac for BSGO.
+
+Make sure you have WINE installed. Recommendation: Install it through Homebrew.
+
+#+begin_src shell
+  brew install --cask wine
+  # A beautiful front-end for WINE.
+  brew install winetricks
+#+end_src
+
+** Linux (x86_64)
+*** A complete WINE installation
+As BSGO was developed for Windows, it requires an installation of WINE to run on your Linux machine.
+
+On Ubuntu-based distributions (e.g. Ubuntu, Linux Mint, Pop_OS, ElementaryOS, KDE Neon), paste this into your terminal:
+
+#+begin_src shell
+# enable 32 bit support
+sudo dpkg --add-architecture i386
+# WINE
+sudo apt install winetricks
+sudo apt install winbind
+# equivalent of lib32-gnutils
+sudo apt-get install gnutls-bi
+# for wine-mono build
+sudo apt install libgdiplus
+sudo apt install dos2unix
+
+#+end_src
+
+On most machines, this is enough to get BSGO running on Linux. We have tested this on Ubuntu, Pop_OS, and Linux Mint.
+
+If the launcher finds a WINE installation on your computer [fn:1], it runs BSGO using WINE. Otherwise, you will receive an error message.
+
+*** Error using Hybrid Graphics: WINE doesn't know which drivers to load
+If you encounter problems with BSGO, it may be because WINE can't decide which drivers to load.
+
+If your Linux distribution supports GPU configuration, make sure to choose the most powerful GPU you have (usually the dedicated GPU if you have one), and reboot your system. *Avoid hybrid graphics mode*, as it might lead to problems.
+
+Also, make sure you have 32-bit architecture enabled, as it is disabled on most modern Linux systems by default. BSGO won't run without this option.
+
+If you're using an Ubuntu-based distribution, the following code might help you. Otherwise, find equivalent commands and packages for your Linux distribution.
+
+Paste the code into the terminal and reboot your system:
+
+#+begin_src shell
+  # The following is for Ubuntu-based Linux distributions with an nvidia GPU using proprietary Nvidia drivers.
+
+  # Enable 32-bit support (required for BSGO)
+  sudo dpkg --add-architecture i386
+
+  # download proprietary nvidia drivers
+  sudo apt install nvidia-driver-430:i386 libnvidia-gl-430:i386 xserver-xorg-video-nvidia-430:i386 libnvidia-cfg1-430:i386 libnvidia-ifr1-430:i386 libnvidia-decode-430:i386 libnvidia-encode-430:i386 nvidia-settings
+  sudo apt install nvidia-driver-430 libnvidia-gl-430 nvidia-utils-430 xserver-xorg-video-nvidia-430 libnvidia-cfg1-430 libnvidia-ifr1-430 libnvidia-decode-430 libnvidia-encode-430 nvidia-settings
+#+end_src
+
+
+#+ATTR_HTML: width="100px"
+#+ATTR_ORG: :width 100
+[[./Assets/test.png]]
+#  LocalWords:  BSGO LocalWords AccInfo PushLauncher UpdateAccountPanel
+
+
+* References
+Reset icon:
+#+begin_src xml
+<a href="https://www.flaticon.com/free-icons/reset" title="reset icons">Reset icons created by itim2101 - Flaticon</a>
+#+end_src
+* Footnotes
+
+[fn:1] Make sure 'wine' is in your $PATH. You don't have to worry about that if you install WINE as shown above.
